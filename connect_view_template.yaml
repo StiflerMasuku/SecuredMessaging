@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template to create AWS::Connect::View resource
+Resources:
+  SecuredEmailView:
+    Type: AWS::Connect::View
+    Properties:
+      Actions:
+      - Create
+      - Read
+      - Update
+      - Delete
+      InstanceArn: arn:aws:connect:us-east-1:687244881512:instance/3ad0cc25-b775-4078-8d60-c6460ee05d6b
+      Name: SecuredEmailView
+      Template: '{"type": "object", "properties": {"AttributeBar_1742218105567": {"properties":
+        {"Attributes": {"items": {"properties": {"Value": {"anyOf": [{"type": "string",
+        "pattern": "^$|^(?!\\$\\.).+"}, {"type": "number"}]}}, "type": "object", "required":
+        ["Value"]}, "type": "array"}}, "type": "object", "required": ["Attributes"]},
+        "AttributeBar_1744108839275": {"properties": {"Attributes": {"items": {"properties":
+        {"Value": {"anyOf": [{"type": "string", "pattern": "^$|^(?!\\$\\.).+"}, {"type":
+        "number"}]}}, "type": "object", "required": ["Value"]}, "type": "array"}},
+        "type": "object", "required": ["Attributes"]}, "AttributeBar_1744108868955":
+        {"properties": {"Attributes": {"items": {"properties": {"Value": {"anyOf":
+        [{"type": "string", "pattern": "^$|^(?!\\$\\.).+"}, {"type": "number"}]}},
+        "type": "object", "required": ["Value"]}, "type": "array"}}, "type": "object",
+        "required": ["Attributes"]}, "TextArea_1742387422746": {"properties": {"DefaultValue":
+        {"anyOf": [{"type": "string", "pattern": "^$|^(?!\\$\\.).+"}, {"type": "number"}]}},
+        "type": "object"}}, "required": ["AttributeBar_1742218105567", "AttributeBar_1744108839275",
+        "AttributeBar_1744108868955"], "$defs": {"ViewCondition": {"$id": "/view/condition",
+        "type": "object", "patternProperties": {"^(MoreThan|LessThan|NotEqual|Equal|Include)$":
+        {"type": "object", "properties": {"ElementByKey": {"type": "string"}, "ElementByValue":
+        {"anyOf": [{"type": "number"}, {"type": "string"}]}}, "additionalProperties":
+        false}, "^(AndConditions|OrConditions)$": {"type": "array", "items": {"$ref":
+        "/view/condition"}}}, "additionalProperties": false}}}'
+      Description: Custom view with attribute bars and text area
+      Tags:
+      - Key: Environment
+        Value: Production
+      - Key: Team
+        Value: CustomerService
