@@ -1,31 +1,242 @@
+# Complete Terraform script for AWS Connect View using CloudFormation
 terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
-    awscc = {
-      source  = "hashicorp/awscc"
-      version = "~> 0.56.0"
-    }
   }
-
-  required_version = ">= 1.3.0"
 }
 
+# Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
 }
 
-provider "awscc" {
-  region = "us-east-1"
+# Create the Connect View using CloudFormation
+resource "aws_cloudformation_stack" "SecuredEmailView" {
+  name = "SecuredEmailView"
+  
+  template_body = jsonencode({
+    AWSTemplateFormatVersion = "2010-09-09"
+    Description = "AWS Connect View for Secured Email with attribute bars and text area"
+    
+    Resources = {
+      SecuredEmailView = {
+        Type = "AWS::Connect::View"
+        Properties = {
+          InstanceArn = "arn:aws:connect:us-east-1:687244881512:instance/3ad0cc25-b775-4078-8d60-c6460ee05d6b"
+          Name        = "SecuredEmailView"
+          Description = "Custom view with attribute bars and text area"
+          Actions     = ["Create", "Read", "Update", "Delete"]
+          
+          Template = {
+            type = "object"
+            properties = {
+              AttributeBar_1742218105567 = {
+                properties = {
+                  Attributes = {
+                    items = {
+                      properties = {
+                        Value = {
+                          anyOf = [
+                            {
+                              type    = "string"
+                              pattern = "^$|^(?!\\$\\.).+"
+                            },
+                            {
+                              type = "number"
+                            }
+                          ]
+                        }
+                      }
+                      type     = "object"
+                      required = ["Value"]
+                    }
+                    type = "array"
+                  }
+                }
+                type     = "object"
+                required = ["Attributes"]
+              }
+              
+              AttributeBar_1744108839275 = {
+                properties = {
+                  Attributes = {
+                    items = {
+                      properties = {
+                        Value = {
+                          anyOf = [
+                            {
+                              type    = "string"
+                              pattern = "^$|^(?!\\$\\.).+"
+                            },
+                            {
+                              type = "number"
+                            }
+                          ]
+                        }
+                      }
+                      type     = "object"
+                      required = ["Value"]
+                    }
+                    type = "array"
+                  }
+                }
+                type     = "object"
+                required = ["Attributes"]
+              }
+              
+              AttributeBar_1744108868955 = {
+                properties = {
+                  Attributes = {
+                    items = {
+                      properties = {
+                        Value = {
+                          anyOf = [
+                            {
+                              type    = "string"
+                              pattern = "^$|^(?!\\$\\.).+"
+                            },
+                            {
+                              type = "number"
+                            }
+                          ]
+                        }
+                      }
+                      type     = "object"
+                      required = ["Value"]
+                    }
+                    type = "array"
+                  }
+                }
+                type     = "object"
+                required = ["Attributes"]
+              }
+              
+              TextArea_1742387422746 = {
+                properties = {
+                  DefaultValue = {
+                    anyOf = [
+                      {
+                        type    = "string"
+                        pattern = "^$|^(?!\\$\\.).+"
+                      },
+                      {
+                        type = "number"
+                      }
+                    ]
+                  }
+                }
+                type = "object"
+              }
+            }
+            required = [
+              "AttributeBar_1742218105567",
+              "AttributeBar_1744108839275", 
+              "AttributeBar_1744108868955"
+            ]
+            "$defs" = {
+              ViewCondition = {
+                "$id" = "/view/condition"
+                type = "object"
+                patternProperties = {
+                  "^(MoreThan|LessThan|NotEqual|Equal|Include)$" = {
+                    type = "object"
+                    properties = {
+                      ElementByKey = {
+                        type = "string"
+                      }
+                      ElementByValue = {
+                        anyOf = [
+                          {
+                            type = "number"
+                          },
+                          {
+                            type = "string"
+                          }
+                        ]
+                      }
+                    }
+                    additionalProperties = false
+                  }
+                  "^(AndConditions|OrConditions)$" = {
+                    type = "array"
+                    items = {
+                      "$ref" = "/view/condition"
+                    }
+                  }
+                }
+                additionalProperties = false
+              }
+            }
+          }
+          
+          Tags = [
+            {
+              Key   = "Environment"
+              Value = "Production"
+            },
+            {
+              Key   = "Team"
+              Value = "CustomerService"
+            }
+          ]
+        }
+      }
+    }
+    
+    Outputs = {
+      ViewId = {
+        Description = "The ID of the created Connect View"
+        Value = { Ref = "SecuredEmailView" }
+        Export = {
+          Name = "SecuredEmailView-ViewId"
+        }
+      }
+      ViewArn = {
+        Description = "The ARN of the created Connect View"
+        Value = { "Fn::GetAtt" = ["SecuredEmailView", "ViewArn"] }
+        Export = {
+          Name = "SecuredEmailView-ViewArn"
+        }
+      }
+    }
+  })
+  
+  tags = {
+    Environment = "Production"
+    Team        = "CustomerService"
+    ManagedBy   = "Terraform"
+  }
+  
+  # Enable rollback on failure
+  on_failure = "ROLLBACK"
+  
+  # Timeout for stack creation/update
+  timeout_in_minutes = 10
 }
 
-resource "aws_cloudformation_stack" "connect_view_stack" {
-  name          = "ConnectViewStack"
-  template_body = file("connect_view_template.yaml")
+# Output the created view details
+output "view_id" {
+  description = "The ID of the created Connect View"
+  value       = aws_cloudformation_stack.SecuredEmailView.outputs["ViewId"]
 }
 
+output "view_arn" {
+  description = "The ARN of the created Connect View"
+  value       = aws_cloudformation_stack.SecuredEmailView.outputs["ViewArn"]
+}
+
+output "cloudformation_stack_id" {
+  description = "The CloudFormation stack ID"
+  value       = aws_cloudformation_stack.SecuredEmailView.id
+}
+
+output "cloudformation_stack_outputs" {
+  description = "All CloudFormation stack outputs"
+  value       = aws_cloudformation_stack.SecuredEmailView.outputs
+}
 
 resource "aws_connect_contact_flow" "EmailInbound2" {
   instance_id  = "3ad0cc25-b775-4078-8d60-c6460ee05d6b"
@@ -33,7 +244,7 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
   description  = "Secured Messaging Contact Flow"
   type         = "CONTACT_FLOW"
   filename     = "EmailInbound2.json"
-  content_hash = filebase64sha256("EmailInbound2.json")
+  content_hash = filebase64sha256("EmailInbound.json")
   tags = {
     "Name"        = "Secured Messaging Contact Flow",
     "Application" = "Terraform",
