@@ -1,3 +1,26 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    awscc = {
+      source  = "hashicorp/awscc"
+      version = "~> 0.56.0"
+    }
+  }
+
+  required_version = ">= 1.3.0"
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
+
+provider "awscc" {
+  region = "us-east-1"
+}
+
 resource "awscc_connect_view" "SecuredEmailView" {
   # Required parameters
   actions      = ["Create", "Read", "Update", "Delete"] # Adjust based on your needs
