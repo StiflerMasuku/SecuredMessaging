@@ -179,7 +179,7 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
   description  = "Secured Messaging Contact Flow"
   type         = "CONTACT_FLOW"
   filename     = "EmailInbound2.json"
-  content_hash = filebase64sha256("EmailInbound.json")
+  content_hash = filebase64sha256("EmailInbound2.json")
   tags = {
     "Name"        = "Secured Messaging Contact Flow",
     "Application" = "Terraform",
