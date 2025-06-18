@@ -18,123 +18,147 @@ provider "awscc" {
 }
 
 # Create the Connect View using CloudFormation
-resource "awscc_connect_view" "SecuredEmailView"{
+resource "awscc_connect_view" "SecuredEmailView" {
   instance_arn = "arn:aws:connect:us-east-1:687244881512:instance/3ad0cc25-b775-4078-8d60-c6460ee05d6b"
-  actions = ["ActionSelected"]
-  template = {
-  type = "object"
-  properties = {
-    DatePicker_1743413169284 = {
-      properties = {
-        DefaultValue = {
-          anyOf = [
-            {
-              type    = "string"
-              pattern = "^$|^(?!\\$\\.).+"
+  actions      = ["ActionSelected", "SubmitResults"]
+  template     = <<EOF
+{
+    "Head": {
+        "Configuration": {
+            "Layout": {
+                "Columns": [
+                    12
+                ]
+            }
+        },
+        "Title": "Dynamic Task View"
+    },
+    "Body": [
+        {
+            "_id": "Header_1",
+            "Type": "Header",
+            "Props": {
+                "variant": "h1",
+                "description": ""
             },
-            {
-              type = "number"
-            }
-          ]
-        }
-      }
-      type = "object"
-    }
-    
-    TimePicker_1743413176808 = {
-      properties = {
-        DefaultValue = {
-          anyOf = [
-            {
-              type    = "string"
-              pattern = "^$|^(?!\\$\\.).+"
+            "Content": [
+                "Task Information"
+            ]
+        },
+        {
+            "_id": "Section_1",
+            "Type": "Section",
+            "Props": {
+                "Heading": "Client Information"
             },
-            {
-              type = "number"
-            }
-          ]
-        }
-      }
-      type = "object"
-    }
-    
-    Dropdown_1746173639763 = {
-      properties = {
-        DefaultValue = {
-          anyOf = [
-            {
-              type    = "string"
-              pattern = "^$|^(?!\\$\\.).+"
-            },
-            {
-              type = "number"
-            }
-          ]
-        }
-      }
-      type = "object"
-    }
-    
-    Dropdown_1746173634404 = {
-      properties = {
-        DefaultValue = {
-          anyOf = [
-            {
-              type    = "string"
-              pattern = "^$|^(?!\\$\\.).+"
-            },
-            {
-              type = "number"
-            }
-          ]
-        }
-      }
-      type = "object"
-    }
-  }
-  required = [
-    "DatePicker_1743413169284",
-    "TimePicker_1743413176808",
-    "Dropdown_1746173639763",
-    "Dropdown_1746173634404"
-  ]
-  "$defs" = {
-    ViewCondition = {
-      "$id" = "/view/condition"
-      type = "object"
-      patternProperties = {
-        "^(MoreThan|LessThan|NotEqual|Equal|Include)$" = {
-          type = "object"
-          properties = {
-            ElementByKey = {
-              type = "string"
-            }
-            ElementByValue = {
-              anyOf = [
+            "Content": [
                 {
-                  type = "number"
+                    "_id": "AttributeBar_1742218105567",
+                    "Type": "AttributeBar",
+                    "Props": {
+                        "Attributes": []
+                    },
+                    "Content": []
                 },
                 {
-                  type = "string"
+                    "_id": "AttributeBar_1744108839275",
+                    "Type": "AttributeBar",
+                    "Props": {
+                        "Attributes": []
+                    },
+                    "Content": []
+                },
+                {
+                    "_id": "AttributeBar_1744108868955",
+                    "Type": "AttributeBar",
+                    "Props": {
+                        "Attributes": []
+                    },
+                    "Content": []
                 }
-              ]
+            ],
+            "Configuration": {
+                "Layout": {
+                    "Columns": "12"
+                }
             }
-          }
-          additionalProperties = false
+        },
+        {
+            "_id": "Section_2",
+            "Type": "Section",
+            "Props": {
+                "Heading": "Notes"
+            },
+            "Content": [
+                {
+                    "_id": "Form_1",
+                    "Type": "Form",
+                    "Props": {
+                        "HideBorder": true
+                    },
+                    "Content": [
+                        {
+                            "_id": "TextArea_1742387422746",
+                            "Type": "TextArea",
+                            "Props": {
+                                "Label": "Notes",
+                                "Name": "Notes",
+                                "DefaultValue": "",
+                                "Placeholder": "Enter your notes here...",
+                                "Required": false,
+                                "Rows": 4
+                            },
+                            "Content": []
+                        }
+                    ],
+                    "Configuration": {
+                        "Layout": {
+                            "Columns": [
+                                "12"
+                            ]
+                        }
+                    }
+                }
+            ],
+            "Configuration": {
+                "Layout": {
+                    "Columns": "12"
+                }
+            }
+        },
+        {
+            "_id": "ButtonGroup_1",
+            "Type": "ButtonGroup",
+            "Props": {
+                "Items": [
+                    {
+                        "Variant": "normal",
+                        "IconAlign": "left",
+                        "Disabled": false,
+                        "Action": "ActionSelected",
+                        "Label": "Cancel",
+                        "FormAction": "",
+                        "IconName": "close"
+                    },
+                    {
+                        "Variant": "primary",
+                        "Disabled": false,
+                        "Action": "SubmitResults",
+                        "Label": "Submit",
+                        "FormAction": "submit",
+                        "IconName": "upload"
+                    }
+                ],
+                "ButtonsOrientation": "horizontal",
+                "SpaceBetweenButtons": "s"
+            },
+            "Content": []
         }
-        "^(AndConditions|OrConditions)$" = {
-          type = "array"
-          items = {
-            "$ref" = "/view/condition"
-          }
-        }
-      }
-      additionalProperties = false
-    }
-  }
+    ]
 }
- name = "SecuredEmailView"
- description = "Email View for secured messaging"
+EOF
+  name         = "SecuredEmailView"
+  description  = "Task view with attribute bars and notes section"
 }
 resource "aws_connect_contact_flow" "EmailInbound2" {
   instance_id  = "3ad0cc25-b775-4078-8d60-c6460ee05d6b"
