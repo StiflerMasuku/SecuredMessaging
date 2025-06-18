@@ -167,7 +167,7 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
   description = "EmailInbound2"
   type        = "CONTACT_FLOW"
   content = <<EOF
-  {
+{
   "Version": "2019-10-30",
   "StartAction": "f8c55a6e-7ec2-4347-b35c-e2578a2c5445",
   "Metadata": {
