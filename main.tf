@@ -19,7 +19,7 @@ provider "awscc" {
 
 # Create the Connect View using CloudFormation
 resource "awscc_connect_view" "SecuredEmailView"{
-  instance_arn = 
+  instance_arn = "arn:aws:connect:us-east-1:687244881512:instance/3ad0cc25-b775-4078-8d60-c6460ee05d6b"
   actions = ["ActionSelected"]
   template = {
   type = "object"
