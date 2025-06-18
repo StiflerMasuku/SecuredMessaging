@@ -21,7 +21,7 @@ provider "awscc" {
 resource "awscc_connect_view" "SecuredEmailView"{
   instance_arn = "arn:aws:connect:us-east-1:687244881512:instance/3ad0cc25-b775-4078-8d60-c6460ee05d6b"
   actions = ["ActionSelected"]
-  template = {
+  template = "{
   type = "object"
   properties = {
     AttributeBar_1742218105567 = {
@@ -161,7 +161,7 @@ resource "awscc_connect_view" "SecuredEmailView"{
       additionalProperties = false
     }
   }
-}
+}"
  name = "SecuredEmailView"
  description = "Email View for secured messaging"
 }
