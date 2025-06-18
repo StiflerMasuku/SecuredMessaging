@@ -166,7 +166,7 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
   name        = "EmailInbound2"
   description = "EmailInbound2"
   type        = "CONTACT_FLOW"
-  content = <<EOF
+  content     = <<EOF
 {
   "Version": "2019-10-30",
   "StartAction": "f8c55a6e-7ec2-4347-b35c-e2578a2c5445",
@@ -429,6 +429,37 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
           }
         ]
       },
+      "2e63dedd-2085-44b4-9391-8d2f5912bfa9": {
+        "position": {
+          "x": 1200,
+          "y": 200
+        }
+      },
+      "49521d9b-0f80-4555-87e9-d7bf0a202dc5": {
+        "position": {
+          "x": 2800,
+          "y": 400
+        }
+      },
+      "2575bb66-4f89-4745-82f4-64f7bdb55068": {
+        "position": {
+          "x": 3000,
+          "y": 400
+        }
+      },
+      "90758634-b9a7-4cce-95d4-04aab7d7b381": {
+        "position": {
+          "x": 1400,
+          "y": 200
+        }
+      },
+      "48c6c19a-593e-4432-b681-eb77e95bdc27": {
+        "position": {
+          "x": 1600,
+          "y": 200
+        }
+      }
+    },
     "Annotations": [],
     "name": "Email Inbound",
     "description": "",
@@ -809,10 +840,7 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
   ]
 }
 EOF
-
-
 }
-
 
 
 
