@@ -21,91 +21,61 @@ provider "awscc" {
 resource "awscc_connect_view" "SecuredEmailView"{
   instance_arn = "arn:aws:connect:us-east-1:687244881512:instance/3ad0cc25-b775-4078-8d60-c6460ee05d6b"
   actions = ["ActionSelected"]
-  template = "{
+  template = {
   type = "object"
   properties = {
-    AttributeBar_1742218105567 = {
+    DatePicker_1743413169284 = {
       properties = {
-        Attributes = {
-          items = {
-            properties = {
-              Value = {
-                anyOf = [
-                  {
-                    type    = "string"
-                    pattern = "^$|^(?!\\$\\.).+"
-                  },
-                  {
-                    type = "number"
-                  }
-                ]
-              }
+        DefaultValue = {
+          anyOf = [
+            {
+              type    = "string"
+              pattern = "^$|^(?!\\$\\.).+"
+            },
+            {
+              type = "number"
             }
-            type     = "object"
-            required = ["Value"]
-          }
-          type = "array"
+          ]
         }
       }
-      type     = "object"
-      required = ["Attributes"]
+      type = "object"
     }
     
-    AttributeBar_1744108839275 = {
+    TimePicker_1743413176808 = {
       properties = {
-        Attributes = {
-          items = {
-            properties = {
-              Value = {
-                anyOf = [
-                  {
-                    type    = "string"
-                    pattern = "^$|^(?!\\$\\.).+"
-                  },
-                  {
-                    type = "number"
-                  }
-                ]
-              }
+        DefaultValue = {
+          anyOf = [
+            {
+              type    = "string"
+              pattern = "^$|^(?!\\$\\.).+"
+            },
+            {
+              type = "number"
             }
-            type     = "object"
-            required = ["Value"]
-          }
-          type = "array"
+          ]
         }
       }
-      type     = "object"
-      required = ["Attributes"]
+      type = "object"
     }
     
-    AttributeBar_1744108868955 = {
+    Dropdown_1746173639763 = {
       properties = {
-        Attributes = {
-          items = {
-            properties = {
-              Value = {
-                anyOf = [
-                  {
-                    type    = "string"
-                    pattern = "^$|^(?!\\$\\.).+"
-                  },
-                  {
-                    type = "number"
-                  }
-                ]
-              }
+        DefaultValue = {
+          anyOf = [
+            {
+              type    = "string"
+              pattern = "^$|^(?!\\$\\.).+"
+            },
+            {
+              type = "number"
             }
-            type     = "object"
-            required = ["Value"]
-          }
-          type = "array"
+          ]
         }
       }
-      type     = "object"
-      required = ["Attributes"]
+      type = "object"
     }
     
-    TextArea_1742387422746 = {
+    Dropdown_1746173634404 = {
       properties = {
         DefaultValue = {
           anyOf = [
@@ -123,9 +93,10 @@ resource "awscc_connect_view" "SecuredEmailView"{
     }
   }
   required = [
-    "AttributeBar_1742218105567",
-    "AttributeBar_1744108839275",
-    "AttributeBar_1744108868955"
+    "DatePicker_1743413169284",
+    "TimePicker_1743413176808",
+    "Dropdown_1746173639763",
+    "Dropdown_1746173634404"
   ]
   "$defs" = {
     ViewCondition = {
@@ -161,7 +132,7 @@ resource "awscc_connect_view" "SecuredEmailView"{
       additionalProperties = false
     }
   }
-}"
+}
  name = "SecuredEmailView"
  description = "Email View for secured messaging"
 }
