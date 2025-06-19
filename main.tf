@@ -164,7 +164,7 @@ EOF
 resource "aws_connect_contact_flow" "EmailInbound2" {
   instance_id = "3ad0cc25-b775-4078-8d60-c6460ee05d6b"
   name        = "EmailInbound2"
-  description = "EmailInbound2"
+  description = "EmailInbound2 two"
   type        = "CONTACT_FLOW"
   content     = <<EOF
 {
