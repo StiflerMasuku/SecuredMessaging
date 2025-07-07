@@ -56,7 +56,7 @@ resource "awscc_connect_view" "SecuredEmailView" {
                     "_id": "AttributeBar_1742218105567",
                     "Type": "AttributeBar",
                     "Props": {
-                        "Attributes": [Contact ID]
+                        "Attributes": ["Contact ID"]
                     },
                     "Content": []
                 },
@@ -64,7 +64,7 @@ resource "awscc_connect_view" "SecuredEmailView" {
                     "_id": "AttributeBar_1744108839275",
                     "Type": "AttributeBar",
                     "Props": {
-                        "Attributes": [To_Address]
+                        "Attributes": ["To_Address"]
                     },
                     "Content": []
                 },
@@ -72,7 +72,7 @@ resource "awscc_connect_view" "SecuredEmailView" {
                     "_id": "AttributeBar_1744108868955",
                     "Type": "AttributeBar",
                     "Props": {
-                        "Attributes": [From_Address]
+                        "Attributes": ["From_Address"]
                     },
                     "Content": []
                 }
