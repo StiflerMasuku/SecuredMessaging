@@ -56,7 +56,11 @@ resource "awscc_connect_view" "SecuredEmailView" {
                     "_id": "AttributeBar_1742218105567",
                     "Type": "AttributeBar",
                     "Props": {
-                        "Attributes": ["Contact ID"]
+                        "Attributes": [
+                            {
+                                "Value": "$.Attributes.ContactId"
+                            }
+                        ]
                     },
                     "Content": []
                 },
@@ -64,7 +68,11 @@ resource "awscc_connect_view" "SecuredEmailView" {
                     "_id": "AttributeBar_1744108839275",
                     "Type": "AttributeBar",
                     "Props": {
-                        "Attributes": ["To_Address"]
+                        "Attributes": [
+                            {
+                                "Value": "$.Attributes.To_Address"
+                            }
+                        ]
                     },
                     "Content": []
                 },
@@ -72,87 +80,23 @@ resource "awscc_connect_view" "SecuredEmailView" {
                     "_id": "AttributeBar_1744108868955",
                     "Type": "AttributeBar",
                     "Props": {
-                        "Attributes": ["From_Address"]
+                        "Attributes": [
+                            {
+                                "Value": "$.Attributes.From_Address"
+                            }
+                        ]
+                    },
+                    "Content": []
+                },
+                {
+                    "_id": "TextArea_1742387422746",
+                    "Type": "TextArea",
+                    "Props": {
+                        "DefaultValue": "Enter additional notes here..."
                     },
                     "Content": []
                 }
-            ],
-            "Configuration": {
-                "Layout": {
-                    "Columns": "12"
-                }
-            }
-        },
-        {
-            "_id": "Section_2",
-            "Type": "Section",
-            "Props": {
-                "Heading": "Notes"
-            },
-            "Content": [
-                {
-                    "_id": "Form_1",
-                    "Type": "Form",
-                    "Props": {
-                        "HideBorder": true
-                    },
-                    "Content": [
-                        {
-                            "_id": "TextArea_1742387422746",
-                            "Type": "TextArea",
-                            "Props": {
-                                "Label": "Notes",
-                                "Name": "Notes",
-                                "DefaultValue": "",
-                                "Placeholder": "Enter your notes here...",
-                                "Required": false,
-                                "Rows": 4
-                            },
-                            "Content": []
-                        }
-                    ],
-                    "Configuration": {
-                        "Layout": {
-                            "Columns": [
-                                "12"
-                            ]
-                        }
-                    }
-                }
-            ],
-            "Configuration": {
-                "Layout": {
-                    "Columns": "12"
-                }
-            }
-        },
-        {
-            "_id": "ButtonGroup_1",
-            "Type": "ButtonGroup",
-            "Props": {
-                "Items": [
-                    {
-                        "Variant": "normal",
-                        "IconAlign": "left",
-                        "Disabled": false,
-                        "Action": "ActionSelected",
-                        "Label": "Cancel",
-                        "FormAction": "",
-                        "IconName": "close"
-                    },
-                    {
-                        "Variant": "primary",
-                        "Disabled": false,
-                        "Action": "SubmitResults",
-                        "Label": "Submit",
-                        "FormAction": "submit",
-                        "IconName": "upload"
-                    }
-                ],
-                "ButtonsOrientation": "horizontal",
-                "SpaceBetweenButtons": "s"
-            },
-            "Content": []
+            ]
         }
     ]
 }
