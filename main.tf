@@ -115,7 +115,7 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
   description = "EmailInbound2"
   type        = "CONTACT_FLOW"
   content = <<EOF
-  {
+ {
   "Version": "2019-10-30",
   "StartAction": "f8c55a6e-7ec2-4347-b35c-e2578a2c5445",
   "Metadata": {
@@ -235,6 +235,36 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
           }
         }
       },
+      "f8c55a6e-7ec2-4347-b35c-e2578a2c5445": {
+        "position": {
+          "x": -247,
+          "y": 622
+        }
+      },
+      "49521d9b-0f80-4555-87e9-d7bf0a202dc5": {
+        "position": {
+          "x": 3975,
+          "y": 517
+        }
+      },
+      "6c1d56f0-8cc3-41c4-b6fa-0d3c8ad88ffd": {
+        "position": {
+          "x": 134,
+          "y": 508
+        },
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "email_lambda"
+          }
+        },
+        "dynamicMetadata": {}
+      },
+      "2575bb66-4f89-4745-82f4-64f7bdb55068": {
+        "position": {
+          "x": 4615,
+          "y": 473
+        }
+      },
       "d01eb6c8-4fc7-44cd-8e7c-b3380e94f34a": {
         "position": {
           "x": 2258,
@@ -277,28 +307,10 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
           "text": "eBook Queue"
         }
       },
-      "f8c55a6e-7ec2-4347-b35c-e2578a2c5445": {
-        "position": {
-          "x": -247,
-          "y": 622
-        }
-      },
-      "6c1d56f0-8cc3-41c4-b6fa-0d3c8ad88ffd": {
-        "position": {
-          "x": 134,
-          "y": 508
-        },
-        "parameters": {
-          "LambdaFunctionARN": {
-            "displayName": "email_lambda"
-          }
-        },
-        "dynamicMetadata": {}
-      },
       "2e94555c-867f-4674-b2a2-18c3c7c7fb75": {
         "position": {
-          "x": 961,
-          "y": 469
+          "x": 523,
+          "y": 533
         },
         "parameters": {
           "Attributes": {
@@ -325,13 +337,13 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
       },
       "1df18bdc-3e1b-4263-9a76-8fbedf4ffa54": {
         "position": {
-          "x": 1917,
-          "y": 353
+          "x": 1497,
+          "y": 390
         },
         "conditions": [],
         "conditionMetadata": [
           {
-            "id": "ecbfb0a6-b895-4e07-b960-3449a2e2cf72",
+            "id": "65a0cebd-fa93-46fd-96df-f39140b75255",
             "operator": {
               "name": "Contains",
               "value": "Contains",
@@ -340,7 +352,7 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
             "value": "Proof of Payment"
           },
           {
-            "id": "9a7a56cb-886f-49a7-8f51-ca0cc7a11d27",
+            "id": "d8be341a-0f1b-49fa-bea4-2cee97e3b215",
             "operator": {
               "name": "Contains",
               "value": "Contains",
@@ -349,7 +361,7 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
             "value": "Credit Card"
           },
           {
-            "id": "a71f557c-40ba-40f8-afd0-17d5aa94f987",
+            "id": "5d97ecb0-26f2-4e1c-b0c9-41fda0ea5ebc",
             "operator": {
               "name": "Contains",
               "value": "Contains",
@@ -358,7 +370,7 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
             "value": "Transactions"
           },
           {
-            "id": "cccb102d-32c1-4556-bee5-32e7c4e774cf",
+            "id": "93fba679-26c5-4723-a7cd-0f6e99e7684f",
             "operator": {
               "name": "Contains",
               "value": "Contains",
@@ -367,7 +379,7 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
             "value": "Bank of Ireland Life"
           },
           {
-            "id": "768a7bfc-4eba-47c8-b06e-e030e036ecc3",
+            "id": "75a67a61-d0e7-4343-845a-1b9b2b7170f9",
             "operator": {
               "name": "Contains",
               "value": "Contains",
@@ -376,84 +388,13 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
             "value": "Savings or Deposit"
           }
         ]
-      },
-      "2e63dedd-2085-44b4-9391-8d2f5912bfa9": {
-        "position": {
-          "x": 2149,
-          "y": 805
-        },
-        "parameters": {
-          "LambdaFunctionARN": {
-            "displayName": "Connect-Email-Object"
-          }
-        },
-        "dynamicMetadata": {}
-      },
-      "49521d9b-0f80-4555-87e9-d7bf0a202dc5": {
-        "position": {
-          "x": 3975,
-          "y": 517
-        }
-      },
-      "2575bb66-4f89-4745-82f4-64f7bdb55068": {
-        "position": {
-          "x": 4615,
-          "y": 473
-        }
-      },
-      "90758634-b9a7-4cce-95d4-04aab7d7b381": {
-        "position": {
-          "x": 2459,
-          "y": 843
-        },
-        "parameters": {
-          "Attributes": {
-            "Email_Object": {
-              "useDynamic": true
-            }
-          }
-        },
-        "dynamicParams": [
-          "Email_Object"
-        ]
-      },
-      "48c6c19a-593e-4432-b681-eb77e95bdc27": {
-        "position": {
-          "x": 2780,
-          "y": 841
-        },
-        "parameters": {
-          "LambdaFunctionARN": {
-            "displayName": "Connect-Email-Task"
-          },
-          "LambdaInvocationAttributes": {
-            "ConnectEmail": {
-              "useDynamic": true
-            },
-            "Email": {
-              "useDynamic": true
-            },
-            "EmailSubject": {
-              "useDynamic": true
-            },
-            "Email_Object": {
-              "useDynamic": true
-            }
-          }
-        },
-        "dynamicMetadata": {
-          "ConnectEmail": true,
-          "Email": true,
-          "EmailSubject": true,
-          "Email_Object": true
-        }
       }
     },
     "Annotations": [],
     "name": "Email Inbound",
     "description": "",
     "type": "contactFlow",
-    "status": "PUBLISHED",
+    "status": "published",
     "hash": {}
   },
   "Actions": [
@@ -576,6 +517,60 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
     },
     {
       "Parameters": {
+        "FlowLoggingBehavior": "Enabled"
+      },
+      "Identifier": "f8c55a6e-7ec2-4347-b35c-e2578a2c5445",
+      "Type": "UpdateFlowLoggingBehavior",
+      "Transitions": {
+        "NextAction": "6c1d56f0-8cc3-41c4-b6fa-0d3c8ad88ffd"
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "49521d9b-0f80-4555-87e9-d7bf0a202dc5",
+      "Type": "TransferContactToQueue",
+      "Transitions": {
+        "NextAction": "2575bb66-4f89-4745-82f4-64f7bdb55068",
+        "Errors": [
+          {
+            "NextAction": "2575bb66-4f89-4745-82f4-64f7bdb55068",
+            "ErrorType": "QueueAtCapacity"
+          },
+          {
+            "NextAction": "2575bb66-4f89-4745-82f4-64f7bdb55068",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:us-east-1:687244881512:function:email_lambda",
+        "InvocationTimeLimitSeconds": "3",
+        "ResponseValidation": {
+          "ResponseType": "JSON"
+        }
+      },
+      "Identifier": "6c1d56f0-8cc3-41c4-b6fa-0d3c8ad88ffd",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "2e94555c-867f-4674-b2a2-18c3c7c7fb75",
+        "Errors": [
+          {
+            "NextAction": "2e94555c-867f-4674-b2a2-18c3c7c7fb75",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "2575bb66-4f89-4745-82f4-64f7bdb55068",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
         "QueueId": "arn:aws:connect:us-east-1:687244881512:instance/3ad0cc25-b775-4078-8d60-c6460ee05d6b/queue/582a6fea-edb9-4c59-9ca3-ea035edb4324"
       },
       "Identifier": "d01eb6c8-4fc7-44cd-8e7c-b3380e94f34a",
@@ -624,36 +619,6 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
     },
     {
       "Parameters": {
-        "FlowLoggingBehavior": "Enabled"
-      },
-      "Identifier": "f8c55a6e-7ec2-4347-b35c-e2578a2c5445",
-      "Type": "UpdateFlowLoggingBehavior",
-      "Transitions": {
-        "NextAction": "6c1d56f0-8cc3-41c4-b6fa-0d3c8ad88ffd"
-      }
-    },
-    {
-      "Parameters": {
-        "LambdaFunctionARN": "arn:aws:lambda:us-east-1:687244881512:function:email_lambda",
-        "InvocationTimeLimitSeconds": "3",
-        "ResponseValidation": {
-          "ResponseType": "JSON"
-        }
-      },
-      "Identifier": "6c1d56f0-8cc3-41c4-b6fa-0d3c8ad88ffd",
-      "Type": "InvokeLambdaFunction",
-      "Transitions": {
-        "NextAction": "2e94555c-867f-4674-b2a2-18c3c7c7fb75",
-        "Errors": [
-          {
-            "NextAction": "2e94555c-867f-4674-b2a2-18c3c7c7fb75",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
         "Attributes": {
           "UserId": "$.External.UserId",
           "Email": "$.External.Email",
@@ -693,7 +658,7 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
             }
           },
           {
-            "NextAction": "2e63dedd-2085-44b4-9391-8d2f5912bfa9",
+            "NextAction": "fab563d9-5808-4956-9121-f19cdc625287",
             "Condition": {
               "Operator": "TextContains",
               "Operands": [
@@ -733,95 +698,6 @@ resource "aws_connect_contact_flow" "EmailInbound2" {
           {
             "NextAction": "fab563d9-5808-4956-9121-f19cdc625287",
             "ErrorType": "NoMatchingCondition"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "LambdaFunctionARN": "arn:aws:lambda:us-east-1:687244881512:function:Connect-Email-Object",
-        "InvocationTimeLimitSeconds": "8",
-        "ResponseValidation": {
-          "ResponseType": "JSON"
-        }
-      },
-      "Identifier": "2e63dedd-2085-44b4-9391-8d2f5912bfa9",
-      "Type": "InvokeLambdaFunction",
-      "Transitions": {
-        "NextAction": "90758634-b9a7-4cce-95d4-04aab7d7b381",
-        "Errors": [
-          {
-            "NextAction": "90758634-b9a7-4cce-95d4-04aab7d7b381",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {},
-      "Identifier": "49521d9b-0f80-4555-87e9-d7bf0a202dc5",
-      "Type": "TransferContactToQueue",
-      "Transitions": {
-        "NextAction": "2575bb66-4f89-4745-82f4-64f7bdb55068",
-        "Errors": [
-          {
-            "NextAction": "2575bb66-4f89-4745-82f4-64f7bdb55068",
-            "ErrorType": "QueueAtCapacity"
-          },
-          {
-            "NextAction": "2575bb66-4f89-4745-82f4-64f7bdb55068",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {},
-      "Identifier": "2575bb66-4f89-4745-82f4-64f7bdb55068",
-      "Type": "DisconnectParticipant",
-      "Transitions": {}
-    },
-    {
-      "Parameters": {
-        "Attributes": {
-          "Email_Object": "$.External.Email_Object"
-        },
-        "TargetContact": "Current"
-      },
-      "Identifier": "90758634-b9a7-4cce-95d4-04aab7d7b381",
-      "Type": "UpdateContactAttributes",
-      "Transitions": {
-        "NextAction": "48c6c19a-593e-4432-b681-eb77e95bdc27",
-        "Errors": [
-          {
-            "NextAction": "48c6c19a-593e-4432-b681-eb77e95bdc27",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "LambdaFunctionARN": "arn:aws:lambda:us-east-1:687244881512:function:Connect-Email-Task",
-        "InvocationTimeLimitSeconds": "8",
-        "LambdaInvocationAttributes": {
-          "ConnectEmail": "$.Attributes.ConnectEmail",
-          "Email": "$.Attributes.Email",
-          "EmailSubject": "$.Attributes.EmailSubject",
-          "Email_Object": "$.Attributes.Email_Object"
-        },
-        "ResponseValidation": {
-          "ResponseType": "STRING_MAP"
-        }
-      },
-      "Identifier": "48c6c19a-593e-4432-b681-eb77e95bdc27",
-      "Type": "InvokeLambdaFunction",
-      "Transitions": {
-        "NextAction": "2575bb66-4f89-4745-82f4-64f7bdb55068",
-        "Errors": [
-          {
-            "NextAction": "2575bb66-4f89-4745-82f4-64f7bdb55068",
-            "ErrorType": "NoMatchingError"
           }
         ]
       }
