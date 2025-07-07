@@ -58,7 +58,7 @@ resource "awscc_connect_view" "SecuredEmailView" {
                     "Props": {
                         "Attributes": [
                             {
-                                "Label": "ContactId"
+                                "Label": "ContactId",
                                 "Value": "$.Attributes.ContactId"
                             }
                         ]
@@ -71,7 +71,7 @@ resource "awscc_connect_view" "SecuredEmailView" {
                     "Props": {
                         "Attributes": [
                             {
-                                "Label": "To_Address"
+                                "Label": "To_Address",
                                 "Value": "$.Attributes.To_Address"
                             }
                         ]
@@ -84,7 +84,7 @@ resource "awscc_connect_view" "SecuredEmailView" {
                     "Props": {
                         "Attributes": [
                             {
-                                "Label": "From_Address"
+                                "Label": "From_Address",
                                 "Value": "$.Attributes.From_Address"
                             }
                         ]
